@@ -202,7 +202,9 @@ BBLOCK(simCRBD, {
     floating_t epsilon = SAMPLE(uniform, 0.0, 1.0);
     // floating_t epsilon = 0.5;
     // PSTATE.mu = epsilon * PSTATE.lambda;
-    PSTATE.mu = 0.1;
+    // V: change the prior to verify the correctness of delayed model
+    // PSTATE.mu = 0.1;
+    PSTATE.mu = SAMPLE(gamma, 1, 0.1);
     // floating_t k_lambda = 1;
     // floating_t theta_lambda = 0.2;
     PSTATE.kLambda = 1;
