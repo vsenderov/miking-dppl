@@ -54,7 +54,7 @@ struct ret_delayed_t_bothways {
         kLambda = k_lambda;
         thetaLambda = theta_lambda;
 	kMu = k_mu;
-	thetaMu = thetaMu;
+	thetaMu = theta_mu;
   }
 };
 
@@ -71,7 +71,7 @@ typedef bisse32_tree_t tree_t;
 INIT_MODEL(progState_t, NUM_BBLOCKS)
   
 // V: This seemed to be correct; returning four floats, two for each parameter and the bool value, no change needed.
-BBLOCK_HELPER_DECLARE(crbdGoesUndetectedDelayed, bool, floating_t, floating_t, floating_t, floating_t);
+BBLOCK_HELPER_DECLARE(crbdGoesUndetectedDelayed, ret_delayed_t_bothways, floating_t, floating_t, floating_t, floating_t, floating_t, floating_t);
 
 BBLOCK_DATA(tree, tree_t, 1)
 
@@ -224,7 +224,6 @@ BBLOCK(simTree, {
 
     // V: instead of using muLocal, we use the Poisson observe
     //floating_t lnProb1 = - muLocal * (parentAge - age);
-    ret_delayed_t my_ret_0;
     ret_delayed_t mu_ret_0 = BBLOCK_CALL(delayedObservePoisson, 0, parentAge - age, PSTATE.kMu, PSTATE.thetaMu);
     floating_t lnProb1 = mu_ret_0.res;
 					 
@@ -306,7 +305,7 @@ BBLOCK(survivorshipBias, {
 
 BBLOCK(sampleFinalLambda, {
     PSTATE.lambda = SAMPLE(gamma, PSTATE.kLambda, PSTATE.thetaLambda);
-    PSTATE.mu = SAMPLE(gamma, PSTATE.kMu, PSTATE.thetaMu);
+    PSTATE.mu      = SAMPLE(gamma, PSTATE.kMu, PSTATE.thetaMu);
     PC++;
 })
 
