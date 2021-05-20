@@ -1,5 +1,10 @@
 # miking-ppl
 
+This Branch contains work that I factored out for my PR. This work should not go in the main branch. It will either be abandoned, or moved to a different repo.
+
+- ideas and attempts for diversification models (partial delayed sampling, different memory structures, etc.)
+- reproducing the bird results.
+
 # PPLCore
 
 To be written...
