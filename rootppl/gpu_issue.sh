@@ -24,7 +24,7 @@ make model=models/phylogenetics/clads2/TEMPLATE-clads2-delayed.cu arch=75 -j$CPU
 ./program 10000 50
 
 
-echo "Compiling ClaDS delayed with stack for the GPU with side-branch simulation turned off"
+echo "Compiling ClaDS delayed array for the GPU with side-branch simulation turned off"
 make clean
 make model=models/phylogenetics/clads2/TEMPLATE-clads2-delayed-nohidden.cu arch=75 -j$CPUCORES  > /dev/null 2> /dev/null
 ./program 10000 50
